@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token) {
         $this->notify(new RedefinirSenhaNotification($token, $this->email, $this->name));
     }
+
+    public function tarefas(){
+        return $this->hasMany('App\Models\Tarefa');
+    }   
 }
