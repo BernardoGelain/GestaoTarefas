@@ -7,14 +7,15 @@
             <div class="card">
                 <div class="card-header">
                   <div class='row'>
-                    <div class="col-9">
+                    <div class="col-8">
                   Tarefas
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                     <div class="float-end">
                   <a href="{{route('tarefa.create')}}">Novo</a>
                   <a href="{{route('tarefa.exportacao', ['extensao' => 'xlsx'])}}" class="px-4">XLSX</a>
                   <a href="{{route('tarefa.exportacao', ['extensao' => 'csv'])}}">CSV</a>
+                  <a href="{{route('tarefa.exportar')}}" target="_blank" class="px-4">PDF</a>
                     </div>
                 </div>
                 </div>

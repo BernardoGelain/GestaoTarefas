@@ -8,6 +8,7 @@ use App\Models\Tarefa;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TarefasExport;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 class TarefaController extends Controller
@@ -119,14 +120,16 @@ class TarefaController extends Controller
     public function exportacao($extensao){
         $arquivo = 'Lista_de_tarefas';
 
-        if($extensao == 'xlsx'){
-            $arquivo .= '.'.$extensao;
-        } elseif ($extensao == 'csv'){
-            $arquivo .= '.'. $extensao;
-        } else{
-            return redirect()->route('tarefa.index');
+        if(in_array($extensao, ['xlsx', 'csv'])){
+            return Excel::download(new TarefasExport, 'lista_de_tarefas.'.$extensao);
         }
+    }
 
-        return Excel::download(new TarefasExport, $arquivo);
+    public function exportar(){
+        $tarefas = auth()->user()->tarefas()->get();
+        $pdf = Pdf::loadView('tarefa.pdf',['tarefas'=>$tarefas]);
+
+        $pdf->setPaper('a4','portrait');
+        return $pdf->stream('lista_de_tarefas.pdf');
     }
 }
