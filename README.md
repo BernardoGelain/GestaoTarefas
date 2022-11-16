@@ -40,4 +40,7 @@ Através da implementação desse código tentei praticar:
 - Envio de e-mails e geração de arquivos XLSX, CSV e PDF.
 
 Tudo isso integrado a um banco de dados PostgreSQL.
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+
